@@ -18,7 +18,7 @@
     "homepage": "https://github.com/su-sws/stanford-api-auth",
     "autoload": {
       "psr-4": {
-        "SUSWS\\APIAuthLib": "src/"
+        "SUSWS\\APIAuthLib\\": "src/"
       }
    }
 }
