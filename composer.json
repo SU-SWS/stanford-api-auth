@@ -1,24 +1,24 @@
 {
-    "name": "su-sws/stanford-api-auth",
-    "description": "api.stanford.edu authentication library",
-    "type": "library",
-    "license": "GPL-2.0+",
-    "support": {
-      "issues": "https://github.com/su-sws/stanford-api-auth/issues"
-    },
-    "authors": [
-      {
-        "name": "Shea McKinney",
-        "email": "sheamck@stanford.edu"
-      }
-    ],
-    "require": {
-      "guzzlehttp/guzzle": "~6.3.0"
-    },
-    "homepage": "https://github.com/su-sws/stanford-api-auth",
-    "autoload": {
-      "psr-4": {
-        "SUSWS\\APIAuthLib\\": "src/"
-      }
-   }
+  "name": "su-sws/stanford-api-auth",
+  "description": "api.stanford.edu authentication library",
+  "type": "library",
+  "license": "GPL-2.0+",
+  "support": {
+    "issues": "https://github.com/su-sws/stanford-api-auth/issues"
+  },
+  "authors": [
+    {
+      "name": "Shea McKinney",
+      "email": "sheamck@stanford.edu"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "~6.3.0"
+  },
+  "homepage": "https://github.com/su-sws/stanford-api-auth",
+  "autoload": {
+    "psr-4": {
+      "SUSWS\\APIAuthLib\\": "src/"
+    }
+  }
 }
