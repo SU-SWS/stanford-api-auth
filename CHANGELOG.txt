@@ -1,0 +1,2 @@
+Stanford API AUTH x.x-x.x, xxxx-xx-xx
+-------------------------------------
