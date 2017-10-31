@@ -22,21 +22,60 @@
 
 namespace SUSWS\APIAuthLib;
 
-use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
 
 class AuthLib {
 
+  // Guzzle HTTP Client.
+  protected $client;
   // API OAuth Token (string).
   protected $authApiToken;
   // API Token Expires Epoc timestampe (int).
   protected $authApiTokenExpires;
   // Authentication endpoint default.
-  // Can be set with $object->setEndpoint($endpoint);
   protected $endpoint = "https://authz.stanford.edu/oauth/token";
   // Authentication Parameters.
   protected $authParams = array('grant_type' => 'client_credentials');
+  // Last response object.
+  protected $lastResponse;
+
+  /**
+   * Create a new class to authenticate with.
+   *
+   * @param Client $client
+   *    Guzzle HTTP client.
+   * @param string $endpoint
+   *    The authentication endpoint if different from default.
+   */
+  public function __construct(Client $client, $endpoint = NULL) {
+    $this->client = $client;
+
+    if (!is_null($endpoint)) {
+      $this->endpoint = $endpoint;
+    }
+  }
+
+  /**
+   * Returns the HTTPClient.
+   *
+   * @return Client
+   *    Guzzle HTTP Client Object.
+   */
+  public function getClient() {
+    return $this->client;
+  }
+
+  /**
+   * Returns the endpoint to authenticate against.
+   *
+   * @return string
+   *    The absolute url of the endpoint to authenticate against.
+   */
+  public function getEndpoint() {
+    return $this->endpoint;
+  }
 
   /**
    * Getter for authApiToken.
@@ -85,6 +124,16 @@ class AuthLib {
    */
   public function setAuthApiTokenExpires($time) {
     $this->authApiTokenExpires = $time;
+  }
+
+  /**
+   * Set the last response variable.
+   *
+   * @param object $response
+   *    The Guzzle HTTP client response object.
+   */
+  protected function setLastResponse($response) {
+    $this->lastResponse = $response;
   }
 
   /**
@@ -141,8 +190,8 @@ class AuthLib {
         if (empty($json)) {
           throw new \Exception("Could not get JSON from body.");
         }
-        $this->setAuthApiToken($json['access_token']);
-        $this->setAuthApiTokenExpires($json['expires_in']);
+        $this->setAuthApiToken($json->access_token);
+        $this->setAuthApiTokenExpires($json->expires_in);
         break;
     }
 
