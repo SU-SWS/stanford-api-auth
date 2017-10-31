@@ -15,5 +15,10 @@
     "require": {
       "guzzlehttp/guzzle": "~6.3.0"
     },
-    "homepage": "https://github.com/su-sws/stanford-api-auth"
+    "homepage": "https://github.com/su-sws/stanford-api-auth",
+    "autoload": {
+      "psr-4": {
+        "SUSWS\\APIAuthLib": "src/"
+      }
+   }
 }
